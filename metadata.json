@@ -1,0 +1,8 @@
+{
+  "name": "ImageFix AI - Hardware & Electronics Diagnostic Engine",
+  "description": "AI-powered troubleshooting assistant for computers, electronics, and consumer technology. See the problem. Find the fix.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
