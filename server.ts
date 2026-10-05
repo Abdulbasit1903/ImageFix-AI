@@ -26,7 +26,7 @@ if (apiKey) {
   });
 }
 
-async function startServer() {
+export function createApp() {
   const app = express();
 
   // Increase payload limit for base64 image uploads
@@ -534,6 +534,12 @@ STRICT RULES:
   });
 
   // Serve frontend: dev mode uses Vite middleware; production mode serves static bundle
+  return app;
+}
+
+async function startServer() {
+  const app = createApp();
+
   if (!isProduction) {
     const { createServer: createViteServer } = await import('vite');
     const vite = await createViteServer({
@@ -557,7 +563,9 @@ STRICT RULES:
   });
 }
 
-startServer().catch((err) => {
-  console.error('Failed to start server:', err);
-  process.exit(1);
-});
+if (process.env.NODE_ENV !== 'test') {
+  startServer().catch((err) => {
+    console.error('Failed to start server:', err);
+    process.exit(1);
+  });
+}
