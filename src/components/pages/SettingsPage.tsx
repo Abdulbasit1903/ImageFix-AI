@@ -361,6 +361,7 @@ export const SettingsPage: React.FC = () => {
             </div>
 
             <button
+              type="button"
               onClick={() =>
                 updateSettings({
                   safetyWarningLevel:
@@ -368,6 +369,7 @@ export const SettingsPage: React.FC = () => {
                 })
               }
               className="px-2.5 py-1 rounded-full font-mono text-[11px] font-bold uppercase bg-[#eaedff] text-[#3525cd] hover:bg-[#dad7ff] transition-colors"
+              aria-label="Toggle safety warning level"
             >
               {settings.safetyWarningLevel.toUpperCase()} &gt;
             </button>
@@ -432,9 +434,11 @@ export const SettingsPage: React.FC = () => {
 
         <div className="bg-white rounded-2xl border border-[#e2e8f0] shadow-sm divide-y divide-[#f1f5f9]">
           {/* Export JSON / CSV */}
-          <div
+          <button
+            type="button"
             onClick={() => handleExportHistory('json')}
-            className="p-4 flex items-center justify-between cursor-pointer hover:bg-[#faf8ff] transition-colors"
+            className="w-full p-4 flex items-center justify-between text-left hover:bg-[#faf8ff] transition-colors"
+            aria-label="Export diagnosis history as JSON"
           >
             <div className="flex items-center gap-3">
               <div className="w-8 h-8 rounded-lg bg-[#f2f3ff] text-[#3525cd] flex items-center justify-center">
@@ -448,12 +452,14 @@ export const SettingsPage: React.FC = () => {
               </div>
             </div>
             <Download className="w-4 h-4 text-[#777587]" />
-          </div>
+          </button>
 
           {/* Clear Cache */}
-          <div
+          <button
+            type="button"
             onClick={handleClearCache}
-            className="p-4 flex items-center justify-between cursor-pointer hover:bg-[#faf8ff] transition-colors"
+            className="w-full p-4 flex items-center justify-between text-left hover:bg-[#faf8ff] transition-colors"
+            aria-label="Clear local cache"
           >
             <div className="flex items-center gap-3">
               <div className="w-8 h-8 rounded-lg bg-[#f8fafc] text-[#777587] flex items-center justify-center">
@@ -467,16 +473,18 @@ export const SettingsPage: React.FC = () => {
               </div>
             </div>
             <span className="font-mono text-xs text-[#777587]">14.2 MB</span>
-          </div>
+          </button>
 
           {/* Delete Account */}
-          <div
+          <button
+            type="button"
             onClick={() => {
               if (confirm('Permanently delete your ImageFix AI profile and diagnoses?')) {
                 signOut();
               }
             }}
-            className="p-4 flex items-center justify-between cursor-pointer hover:bg-[#fee2e2]/40 transition-colors"
+            className="w-full p-4 flex items-center justify-between text-left hover:bg-[#fee2e2]/40 transition-colors"
+            aria-label="Delete account"
           >
             <div className="flex items-center gap-3">
               <div className="w-8 h-8 rounded-lg bg-[#ffdad6] text-[#ba1a1a] flex items-center justify-center">
@@ -490,13 +498,14 @@ export const SettingsPage: React.FC = () => {
               </div>
             </div>
             <ChevronRight className="w-4 h-4 text-[#ba1a1a]" />
-          </div>
+          </button>
         </div>
       </div>
 
       {/* Sign Out Button matching Stitch Image 1 */}
       <div>
         <button
+          type="button"
           onClick={signOut}
           className="w-full py-3 bg-white hover:bg-[#f8fafc] text-[#334155] hover:text-[#ba1a1a] border border-[#e2e8f0] font-semibold text-xs rounded-xl shadow-2xs flex items-center justify-center gap-2 transition-all cursor-pointer"
         >

@@ -45,14 +45,21 @@ export const SearchModal: React.FC = () => {
   return (
     <div className="fixed inset-0 z-50 flex items-start justify-center pt-20 px-4 bg-[#131b2e]/40 backdrop-blur-xs">
       <div
+        role="dialog"
+        aria-modal="true"
+        aria-label="Search diagnostics and devices"
         className="w-full max-w-2xl bg-white rounded-2xl shadow-2xl border border-[#c7c4d8] overflow-hidden animate-in fade-in zoom-in-95 duration-150"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Search Input Bar */}
         <div className="flex items-center px-4 py-3.5 border-b border-[#e2e8f0]">
-          <Search className="w-5 h-5 text-[#4f46e5] mr-3 shrink-0" />
+          <label htmlFor="global-search-input" className="sr-only">
+            Search diagnostics and devices
+          </label>
+          <Search className="w-5 h-5 text-[#4f46e5] mr-3 shrink-0" aria-hidden="true" />
           <input
-            type="text"
+            id="global-search-input"
+            type="search"
             autoFocus
             value={query}
             onChange={(e) => setQuery(e.target.value)}
@@ -61,6 +68,8 @@ export const SearchModal: React.FC = () => {
           />
           {query && (
             <button
+              type="button"
+              aria-label="Clear search query"
               onClick={() => setQuery('')}
               className="p-1 hover:bg-[#f1f5f9] rounded-md text-[#777587] mr-1"
             >
@@ -68,8 +77,10 @@ export const SearchModal: React.FC = () => {
             </button>
           )}
           <button
+            type="button"
             onClick={() => setIsSearchModalOpen(false)}
             className="px-2 py-1 text-xs bg-[#f2f3ff] text-[#3525cd] rounded font-mono font-medium"
+            aria-label="Close search dialog"
           >
             ESC
           </button>

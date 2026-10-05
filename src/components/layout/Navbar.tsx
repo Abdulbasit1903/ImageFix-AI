@@ -10,6 +10,8 @@ export const Navbar: React.FC = () => {
       {/* Mobile brand & title */}
       <div className="flex items-center gap-3 lg:hidden">
         <button
+          type="button"
+          aria-label="Go to the dashboard"
           onClick={() => navigateTo('dashboard')}
           className="flex items-center gap-2 font-display font-bold text-lg text-[#131b2e]"
         >
@@ -23,6 +25,8 @@ export const Navbar: React.FC = () => {
       {/* Desktop Search Bar matching Stitch */}
       <div className="hidden lg:flex items-center flex-1 max-w-xl">
         <button
+          type="button"
+          aria-label="Open search"
           onClick={() => setIsSearchModalOpen(true)}
           className="w-full flex items-center justify-between px-3.5 py-2 text-sm text-[#464555] bg-[#f8fafc] hover:bg-[#f1f5f9] border border-[#e2e8f0] rounded-lg transition-all shadow-xs group"
         >
@@ -46,7 +50,9 @@ export const Navbar: React.FC = () => {
 
         {/* Notifications */}
         <button
+          type="button"
           title="Notifications"
+          aria-label="Open recent diagnostics"
           className="relative p-2 text-[#464555] hover:text-[#131b2e] hover:bg-[#f2f3ff] rounded-full transition-colors"
           onClick={() => navigateTo('history')}
         >
@@ -56,9 +62,11 @@ export const Navbar: React.FC = () => {
 
         {/* User Avatar Button */}
         <button
+          type="button"
           onClick={() => navigateTo('profile')}
           className="flex items-center gap-2 p-0.5 rounded-full hover:ring-2 hover:ring-[#4f46e5]/40 transition-all"
           title={`${currentUser.name} (${currentUser.tier})`}
+          aria-label={`Open profile for ${currentUser.name}`}
         >
           <img
             src={currentUser.avatarUrl}

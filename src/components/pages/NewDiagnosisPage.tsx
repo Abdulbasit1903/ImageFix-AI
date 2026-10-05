@@ -270,11 +270,16 @@ export const NewDiagnosisPage: React.FC = () => {
             </span>
           </div>
 
+          <label htmlFor="device-photo-upload" className="sr-only">
+            Upload a device or component photo
+          </label>
           <input
+            id="device-photo-upload"
             ref={fileInputRef}
             type="file"
             accept="image/jpeg,image/png,image/webp"
             className="hidden"
+            aria-label="Upload a device or component photo"
             onChange={(e) => {
               if (e.target.files && e.target.files[0]) {
                 handleFileChange(e.target.files[0]);
@@ -283,12 +288,14 @@ export const NewDiagnosisPage: React.FC = () => {
           />
 
           {!imagePreview ? (
-            <div
+            <button
+              type="button"
+              aria-label="Upload a device or component photo"
               onDragOver={handleDragOver}
               onDragLeave={handleDragLeave}
               onDrop={handleDrop}
               onClick={() => fileInputRef.current?.click()}
-              className={`border-2 border-dashed rounded-2xl p-8 sm:p-12 text-center cursor-pointer transition-all flex flex-col items-center justify-center gap-3 ${
+              className={`w-full border-2 border-dashed rounded-2xl p-6 sm:p-10 text-center transition-all flex flex-col items-center justify-center gap-3 ${
                 isDragging
                   ? 'border-[#4f46e5] bg-[#eaedff]'
                   : 'border-[#cbd5e1] hover:border-[#4f46e5] hover:bg-[#faf8ff]'
@@ -305,13 +312,13 @@ export const NewDiagnosisPage: React.FC = () => {
                   Ensure good lighting, sharp focus on components, and avoid glare
                 </div>
               </div>
-            </div>
+            </button>
           ) : (
             <div className="space-y-3">
               <div className="relative rounded-2xl overflow-hidden border border-[#c7c4d8] aspect-16/9 sm:aspect-21/9 bg-[#0f172a] flex items-center justify-center">
                 <img
                   src={imagePreview}
-                  alt="Uploaded hardware preview"
+                  alt="Uploaded device image preview for troubleshooting diagnosis"
                   className="max-h-80 w-full object-contain"
                 />
 
@@ -395,24 +402,27 @@ export const NewDiagnosisPage: React.FC = () => {
           </h2>
 
           <div>
-            <label className="block text-xs font-semibold text-[#464555] mb-1">
-              Device Model / Revision (Optional)
-            </label>
-            <input
-              type="text"
-              value={deviceModel}
-              onChange={(e) => setDeviceModel(e.target.value)}
-              placeholder="e.g. NVIDIA GeForce RTX 3080 Founders Edition, Ender 3 V2, Dell XPS 15"
-              className="w-full px-3.5 py-2 text-sm bg-white border border-[#e2e8f0] rounded-lg focus:border-[#4f46e5] focus:ring-2 focus:ring-[#4f46e5]/15 outline-none font-medium"
-            />
-          </div>
+              <label htmlFor="device-model" className="block text-xs font-semibold text-[#464555] mb-1">
+                Device Model / Revision (Optional)
+              </label>
+              <input
+                id="device-model"
+                name="deviceModel"
+                type="text"
+                value={deviceModel}
+                onChange={(e) => setDeviceModel(e.target.value)}
+                placeholder="e.g. NVIDIA GeForce RTX 3080 Founders Edition, Ender 3 V2, Dell XPS 15"
+                className="w-full px-3.5 py-2 text-sm bg-white border border-[#e2e8f0] rounded-lg focus:border-[#4f46e5] focus:ring-2 focus:ring-[#4f46e5]/15 outline-none font-medium"
+              />
+            </div>
 
-          <div>
-            <label className="block text-xs font-semibold text-[#464555] mb-1">
-              Describe the Problem & Observed Symptoms *
-            </label>
-            <textarea
-              rows={4}
+            <div>
+              <label htmlFor="problem-description" className="block text-xs font-semibold text-[#464555] mb-1">
+                Describe the Problem & Observed Symptoms *
+              </label>
+              <textarea
+                id="problem-description"
+                name="problemDescription"
               required
               value={problemDescription}
               onChange={(e) => setProblemDescription(e.target.value)}

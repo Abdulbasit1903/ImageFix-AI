@@ -40,7 +40,9 @@ export const MobileNav: React.FC = () => {
 
         return (
           <button
+            type="button"
             key={tab.id}
+            aria-label={`Open ${tab.label}`}
             onClick={() => navigateTo(tab.id)}
             className={`flex flex-col items-center justify-center flex-1 py-1 px-1 transition-all ${
               isActive ? 'text-[#3525cd]' : 'text-[#777587] hover:text-[#131b2e]'

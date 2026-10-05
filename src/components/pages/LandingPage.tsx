@@ -153,7 +153,7 @@ export const LandingPage: React.FC = () => {
               <div className="relative rounded-xl overflow-hidden border border-[#c7c4d8] aspect-4/3 bg-black">
                 <img
                   src="https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=600&q=80"
-                  alt="Visual inspection capture"
+                  alt="Hardware component visual inspection showing a circuit board with thermal and electrical indicators"
                   className="w-full h-full object-cover opacity-90"
                 />
                 {/* Bounding box mock overlay */}

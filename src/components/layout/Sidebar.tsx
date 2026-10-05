@@ -35,6 +35,8 @@ export const Sidebar: React.FC = () => {
         {/* Brand header matching Stitch */}
         <div className="p-6 border-b border-[#f1f5f9]">
           <button
+            type="button"
+            aria-label="Go to the dashboard"
             onClick={() => navigateTo('dashboard')}
             className="flex items-start gap-3 text-left group w-full"
           >
@@ -56,6 +58,8 @@ export const Sidebar: React.FC = () => {
 
           {/* New Diagnosis Primary CTA Button */}
           <button
+            type="button"
+            aria-label="Start a new diagnosis"
             onClick={() => navigateTo('new-diagnosis')}
             className="w-full mt-5 py-2.5 px-4 bg-[#4f46e5] hover:bg-[#4338ca] text-white font-medium rounded-lg text-sm flex items-center justify-center gap-2 shadow-sm shadow-[#4f46e5]/30 transition-all hover:shadow-md cursor-pointer active:scale-[0.99]"
           >
@@ -80,6 +84,7 @@ export const Sidebar: React.FC = () => {
 
             return (
               <button
+                type="button"
                 key={item.id}
                 onClick={() => navigateTo(item.id)}
                 className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-lg text-sm font-medium transition-all ${
@@ -109,8 +114,10 @@ export const Sidebar: React.FC = () => {
       <div className="p-4 border-t border-[#f1f5f9] bg-[#faf8ff]">
         <div className="flex items-center justify-between p-2 rounded-xl hover:bg-white transition-colors border border-transparent hover:border-[#e2e8f0]">
           <button
+            type="button"
             onClick={() => navigateTo('profile')}
             className="flex items-center gap-2.5 text-left flex-1 min-w-0"
+            aria-label={`Open profile for ${currentUser.name}`}
           >
             <img
               src={currentUser.avatarUrl}
@@ -128,8 +135,10 @@ export const Sidebar: React.FC = () => {
           </button>
 
           <button
+            type="button"
             onClick={signOut}
             title="Sign Out"
+            aria-label="Sign out of ImageFix AI"
             className="p-1.5 text-[#777587] hover:text-[#ba1a1a] hover:bg-[#fee2e2] rounded-lg transition-colors ml-1"
           >
             <LogOut className="w-4 h-4" />

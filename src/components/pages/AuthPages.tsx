@@ -42,25 +42,29 @@ export const SignInPage: React.FC = () => {
         </div>
 
         {errorMessage && (
-          <div className="p-3.5 rounded-xl bg-[#fef2f2] border border-[#fecaca] text-[#b91c1c] text-xs flex items-start gap-2.5">
+          <div aria-live="polite" className="p-3.5 rounded-xl bg-[#fef2f2] border border-[#fecaca] text-[#b91c1c] text-xs flex items-start gap-2.5">
             <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
             <div className="flex-1">{errorMessage}</div>
           </div>
         )}
 
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-4" noValidate>
           <div>
-            <label className="block text-xs font-medium text-[#464555] mb-1">
+            <label htmlFor="signin-email" className="block text-xs font-medium text-[#464555] mb-1">
               Email Address
             </label>
             <div className="relative">
               <Mail className="w-4 h-4 text-[#777587] absolute left-3 top-3" />
               <input
+                id="signin-email"
+                name="email"
                 type="email"
                 required
                 autoComplete="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                aria-invalid={Boolean(errorMessage)}
+                aria-describedby={errorMessage ? 'signin-error' : undefined}
                 className="w-full pl-9 pr-3 py-2 text-sm bg-white border border-[#e2e8f0] rounded-lg focus:border-[#4f46e5] focus:ring-2 focus:ring-[#4f46e5]/15 outline-none transition-all text-[#131b2e]"
                 placeholder="tech@imagefix.ai"
               />
@@ -69,18 +73,21 @@ export const SignInPage: React.FC = () => {
 
           <div>
             <div className="flex items-center justify-between mb-1">
-              <label className="block text-xs font-medium text-[#464555]">
+              <label htmlFor="signin-password" className="block text-xs font-medium text-[#464555]">
                 Password
               </label>
             </div>
             <div className="relative">
               <Lock className="w-4 h-4 text-[#777587] absolute left-3 top-3" />
               <input
+                id="signin-password"
+                name="password"
                 type="password"
                 required
                 autoComplete="current-password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                aria-invalid={Boolean(errorMessage)}
                 className="w-full pl-9 pr-3 py-2 text-sm bg-white border border-[#e2e8f0] rounded-lg focus:border-[#4f46e5] focus:ring-2 focus:ring-[#4f46e5]/15 outline-none transition-all text-[#131b2e]"
                 placeholder="Enter your password"
               />
@@ -106,6 +113,7 @@ export const SignInPage: React.FC = () => {
         <div className="text-center pt-2 border-t border-[#f1f5f9] text-xs text-[#777587]">
           Don't have an ImageFix account?{' '}
           <button
+            type="button"
             onClick={() => navigateTo('signup')}
             className="font-semibold text-[#3525cd] hover:underline cursor-pointer"
           >
@@ -170,20 +178,21 @@ export const SignUpPage: React.FC = () => {
         </div>
 
         {errorMessage && (
-          <div className="p-3.5 rounded-xl bg-[#fef2f2] border border-[#fecaca] text-[#b91c1c] text-xs flex items-start gap-2.5">
+          <div aria-live="polite" className="p-3.5 rounded-xl bg-[#fef2f2] border border-[#fecaca] text-[#b91c1c] text-xs flex items-start gap-2.5">
             <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
             <div className="flex-1">{errorMessage}</div>
           </div>
         )}
 
         {confirmationNotice && (
-          <div className="p-4 rounded-xl bg-[#ecfdf5] border border-[#a7f3d0] text-[#065f46] text-xs space-y-2">
+          <div aria-live="polite" className="p-4 rounded-xl bg-[#ecfdf5] border border-[#a7f3d0] text-[#065f46] text-xs space-y-2">
             <div className="flex items-center gap-2 font-bold text-sm">
               <CheckCircle2 className="w-4 h-4 text-[#059669]" />
               <span>Check Your Email</span>
             </div>
             <p className="leading-relaxed">{confirmationNotice}</p>
             <button
+              type="button"
               onClick={() => navigateTo('signin')}
               className="mt-2 px-3 py-1.5 bg-[#059669] hover:bg-[#047857] text-white rounded-lg font-semibold text-xs flex items-center gap-1.5 transition-colors cursor-pointer"
             >
@@ -194,16 +203,19 @@ export const SignUpPage: React.FC = () => {
         )}
 
         {!confirmationNotice && (
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-4" noValidate>
             <div>
-              <label className="block text-xs font-medium text-[#464555] mb-1">
+              <label htmlFor="signup-name" className="block text-xs font-medium text-[#464555] mb-1">
                 Full Name
               </label>
               <div className="relative">
                 <User className="w-4 h-4 text-[#777587] absolute left-3 top-3" />
                 <input
+                  id="signup-name"
+                  name="name"
                   type="text"
                   required
+                  autoComplete="name"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   className="w-full pl-9 pr-3 py-2 text-sm bg-white border border-[#e2e8f0] rounded-lg focus:border-[#4f46e5] focus:ring-2 focus:ring-[#4f46e5]/15 outline-none transition-all text-[#131b2e]"
@@ -213,12 +225,14 @@ export const SignUpPage: React.FC = () => {
             </div>
 
             <div>
-              <label className="block text-xs font-medium text-[#464555] mb-1">
+              <label htmlFor="signup-email" className="block text-xs font-medium text-[#464555] mb-1">
                 Email Address
               </label>
               <div className="relative">
                 <Mail className="w-4 h-4 text-[#777587] absolute left-3 top-3" />
                 <input
+                  id="signup-email"
+                  name="email"
                   type="email"
                   required
                   autoComplete="email"
@@ -231,12 +245,14 @@ export const SignUpPage: React.FC = () => {
             </div>
 
             <div>
-              <label className="block text-xs font-medium text-[#464555] mb-1">
+              <label htmlFor="signup-password" className="block text-xs font-medium text-[#464555] mb-1">
                 Password
               </label>
               <div className="relative">
                 <Lock className="w-4 h-4 text-[#777587] absolute left-3 top-3" />
                 <input
+                  id="signup-password"
+                  name="password"
                   type="password"
                   required
                   autoComplete="new-password"
